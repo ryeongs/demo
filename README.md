@@ -1,3 +1,9 @@
+## Spring @Async 란
+> @Async Annotation은 Spring에서 제공하는 Thread Pool을 활용하는 비동기 메소드 지원 Annotation이다.      
+> java.util.concurrent.ExecutorService을 활용해서 비동기 방식의 method를 정의 할 때마다, Runnable의 run()을 재구현해야 하는 등 동일한 작업들의 반복이 잦았다.   
+@Async Annotation을 활용하면 손쉽게 비동기 메소드 작성이 가능하고 만약 Spring Boot에서 간단히 사용하고 싶다면, 단순히 Application Class에 @EnableAsync Annotation을 추가하고,
+비동기로 작동하길 원하는 method 위에 @Async Annotation을 붙여주면 사용할 수 있다.
+--- 
 ## Kafka 란
 > 분산형 스트리밍 플랫폼(A distributed streaming platform)이다.    
 메시지를 받기를 원하는 사람이 해당 토픽(topic)을 구독함으로써 메시지를 읽어 올 수 있다.    
