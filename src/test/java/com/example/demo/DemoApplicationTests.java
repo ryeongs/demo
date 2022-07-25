@@ -1,28 +1,28 @@
 package com.example.demo;
 
+import com.example.demo.Kafka.Service.KafkaProducer;
+import com.example.demo.Model.Member;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 class DemoApplicationTests {
+    private final KafkaProducer producer;
 
-
-    private MockMvc mvc;
-
-    @Test
-    void contextLoads() {
-        String hello = "hello";
-//
-//        mvc.perform(get("/hello"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(hello));
-
+    @Autowired
+    DemoApplicationTests(KafkaProducer producer) {
+        this.producer = producer;
     }
 
+    @Test
+    public void memberInfo() {
+        Member member = new Member();
+        if( "".equals(member.getName()) || member.getName() == null ) member.setName("test-name");
+        if( "".equals(member.getEmail()) || member.getEmail() == null ) member.setEmail("test@test.com");
 
+        producer.sendMessage(member.toString());
+        System.out.println(member.toString());
+    }
 
 }
