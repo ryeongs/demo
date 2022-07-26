@@ -19,13 +19,9 @@ Queue에 저장되어있다가 Thread에 자리가 생기면 하나씩 빠져나
 ## 주의사항 
 - private method는 사용 불가, public method만 사용 가능
 > @Async의 동작은 AOP가 적용되어 Spring Context에서 등록된 Bean Object의 method가 호출 될 시에,   
-
-> Spring이 확인할 수 있고 @Async가 적용된 method의 경우 Spring이 method를 가로채 다른 Thread에서 실행 시켜주는 동작 방식이다.   
-
-> 이 때문에 Spring이 해당 @Async method를 가로챈 후, 다른 Class에서 호출이 가능해야 하므로,   
-
-> private method는 사용할 수 없는 것이다.   
-
+Spring이 확인할 수 있고 @Async가 적용된 method의 경우 Spring이 method를 가로채 다른 Thread에서 실행 시켜주는 동작 방식이다.   
+이 때문에 Spring이 해당 @Async method를 가로챈 후, 다른 Class에서 호출이 가능해야 하므로,   
+private method는 사용할 수 없는 것이다.   
 
 - self-invocation(자가 호출) 불가, 즉 inner method는 사용 불가
 
