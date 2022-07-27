@@ -24,8 +24,14 @@ Spring이 확인할 수 있고 @Async가 적용된 method의 경우 Spring이 me
 private method는 사용할 수 없는 것이다.   
 
 - self-invocation(자가 호출) 불가, 즉 inner method는 사용 불가
+> Spring Context에 등록된 Bean의 method의 호출이어야 Proxy 적용이 가능하므로,   
+inner method의 호출은 Proxy 영향을 받지 않기에 self-invocation이 불가능하다.   
 
 - QueueCapacity 초과 요청에 대한 비동기 method 호출시 방어 코드 작성
+> 최대 수용 가능한 Thread Pool 수와 QueueCapacity 까지 초과된 요청이 들어는 경우
+Task를 Reject하는 Exception이 발생한다.   
+TaskRejectedException 발생 시 handling 해주는 방어 코드를 작성하자.
+
 
 --- 
 ## Kafka 란
